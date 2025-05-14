@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Gmail Setup Guide | Step-by-Step Tutorial</title>
+    <style>
+        :root {
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
+            --light-gray: #f5f5f5;
+            --dark-gray: #3c4043;
+            --medium-gray: #5f6368;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Google Sans', Roboto, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--google-blue), var(--google-green));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .logo .g { background-color: var(--google-blue); }
+        .logo .o1 { background-color: var(--google-red); }
+        .logo .o2 { background-color: var(--google-yellow); }
+        .logo .l { background-color: var(--google-green); }
+        .logo .e { background-color: var(--google-red); }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--google-blue), var(--google-green), var(--google-yellow), var(--google-red));
+        }
+
+        .intro p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--google-blue);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background-color: #3367d6;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--google-blue);
+            color: var(--google-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(66, 133, 244, 0.1);
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 2rem 0;
+            height: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--google-blue), var(--google-green));
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Steps Container */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Step Card */
+        .step {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-header {
+            background-color: white;
+            color: var(--dark-gray);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            background-color: var(--google-blue);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-title {
+            flex-grow: 1;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .step-toggle {
+            background: none;
+            border: none;
+            color: var(--medium-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .step-toggle:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .step-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .step.active .step-content {
+            padding: 1.5rem;
+            max-height: 5000px;
+        }
+
+        .step.active .step-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Step Content Styles */
+        .step-image-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eee;
+            cursor: zoom-in;
+        }
+
+        .step-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .step-image-container:hover .step-image {
+            transform: scale(1.02);
+        }
+
+        .step-description {
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+        }
+
+        .step-description p {
+            margin-bottom: 1rem;
+        }
+
+        .step-description ul, .step-description ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .step-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .step-tips {
+            background-color: rgba(251, 188, 5, 0.1);
+            border-left: 4px solid var(--google-yellow);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .step-tips h4 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-tips h4::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        .step-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Modal for Image Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Completion Message */
+        .completion {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--google-green), var(--google-blue));
+            color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+
+        .completion.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .completion h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .completion p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Completed Step Styles */
+        .completed .step-header {
+            background-color: rgba(52, 168, 83, 0.05);
+        }
+
+        .completed .step-number {
+            background-color: var(--google-green);
+        }
+
+        .completed-mark {
+            display: none;
+            margin-left: 1rem;
+        }
+
+        .completed .completed-mark {
+            display: inline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .logo span {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .step-header {
+                padding: 1rem;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+            }
+            
+            .step-number {
+                width: 30px;
+                height: 30px;
+                margin-right: 1rem;
+            }
+            
+            .intro {
+                padding: 1.5rem;
+            }
+            
+            .completion h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .step-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+                    <h1>Gmail Account Setup Guide</h1>
+            <p class="subtitle">Follow these simple steps to create your new Gmail account</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <p>Welcome to our comprehensive Gmail setup guide! This interactive tutorial will walk you through each step of creating your new Gmail account.</p>
+            <p>Having a Gmail account gives you access to all of Google's services including Drive, Photos, Calendar, and more.</p>
+            <p>Let's get started setting up your account!</p>
+            <p>By Phearom Yoeu</p>
+            <div>
+                <button id="startBtn" class="btn">
+                    <span class="btn-icon">🚀</span> Begin Setup
+                </button>
+                <button class="btn btn-outline" id="viewAllBtn">
+                    <span class="btn-icon">👀</span> View All Steps
+                </button>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="steps-container">
+            <!-- Step 1 -->
+            <div class="step" id="step1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Visit the Gmail website</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        <p>To begin creating your Gmail account, you'll need to visit the official Gmail website:</p>
+                        <ol>
+                            <li>Open your preferred web browser (Chrome, Firefox, Safari, Edge, etc.)</li>
+                            <li>In the address bar at the top, type: <code>mail.google.com</code></li>
+                            <li>Press Enter to load the Gmail website</li>
+                        </ol>
+                        <p>You'll see the Gmail login page. Since you don't have an account yet, you'll need to create one by following the next steps.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Pro Tip</h4>
+                            <p>Make sure you're on the official Google website by checking the URL begins with <code>https://</code> and has a padlock icon in the address bar.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                        <a href="https://mail.google.com" target="_blank" class="btn btn-outline">
+                            <span class="btn-icon">🔗</span> Open Gmail
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Click on "Create account"</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container" data-modal="img2">
+                        <img src="./img/1.png" alt="Create account button screenshot" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>On the Gmail login page, you'll find the option to create a new account:</p>
+                        <ul>
+                            <li>Look in the top right corner of the page</li>
+                            <li>You'll see a blue button labeled "Create account"</li>
+                            <li>Click this button to begin the account creation process</li>
+                        </ul>
+                        <p>After clicking, you'll be presented with options for the type of account you want to create.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Important Note</h4>
+                            <p>If you're already signed in to another Google account, you may need to sign out first or use the "Add another account" option.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Choose "For my personal use"</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container" data-modal="img3">
+                        <img src="./img/2.png" alt="Account type selection screenshot" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>Google will ask what type of account you want to create. For most users:</p>
+                        <ul>
+                            <li>Select "For my personal use" - this is the standard Gmail account</li>
+                            <li>This option gives you access to all Google services for personal use</li>
+                            <li>The other options are for business or child accounts</li>
+                        </ul>
+                        <p>After selecting, click "Next" to proceed to the account setup form.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Did You Know?</h4>
+                            <p>Personal accounts get 15GB of free storage shared across Gmail, Drive, and Photos. Business accounts may have different storage options.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Enter your personal information</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container" data-modal="img4">
+                        <img src="./img/3.png" alt="Personal information form screenshot" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>Now you'll fill in the registration form with your personal details:</p>
+                        <ol>
+                            <li><strong>First and last name</strong>: Enter your real name as you'd like it to appear on emails</li>
+                            <li><strong>Username</strong>: This will be your email address (e.g., yourname@gmail.com)
+                                <ul>
+                                    <li>Try different variations if your first choice is taken</li>
+                                    <li>Google will suggest available alternatives</li>
+                                </ul>
+                            </li>
+                            <li><strong>Password</strong>: Create a strong, unique password
+                                <ul>
+                                    <li>Use at least 8 characters</li>
+                                    <li>Include numbers, letters, and symbols</li>
+                                    <li>Avoid common words or personal information</li>
+                                </ul>
+                            </li>
+                            <li><strong>Birthday and gender</strong>: Used for personalization and security</li>
+                        </ol>
+                        
+                        <div class="step-tips">
+                            <h4>Password Tips</h4>
+                            <p>Consider using a passphrase (like "BlueCoffeeMug42!") instead of a single word. It's easier to remember and harder to crack.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" id="step5">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Add a recovery email address (optional)</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container" data-modal="img5">
+                        <img src="./img/4.png" alt="Recovery email section screenshot" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>For added security, you can provide recovery information:</p>
+                        <ul>
+                            <li><strong>Recovery email</strong>: Another email address you own
+                                <ul>
+                                    <li>Used if you lose access to your account</li>
+                                    <li>Helps with password resets and security alerts</li>
+                                </ul>
+                            </li>
+                            <li><strong>Phone number</strong> (optional but recommended)
+                                <ul>
+                                    <li>Provides two-factor authentication</li>
+                                    <li>Helps recover your account if needed</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>While optional, we strongly recommend setting up at least one recovery option to protect your account.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Security Advice</h4>
+                            <p>Accounts with recovery information are much less likely to be permanently lost if you forget your password or get locked out.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step" id="step6">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Review your account information</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        <p>Before finalizing your account, carefully review all the information:</p>
+                        <ul>
+                            <li>Double-check your email address (username) - this cannot be changed later</li>
+                            <li>Verify your name is spelled correctly</li>
+                            <li>Confirm your recovery information if provided</li>
+                        </ul>
+                        <p>If anything needs correction, use the "Back" button to make changes. When everything looks correct, proceed to the next step.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Important</h4>
+                            <p>Your Gmail address will be your identity across all Google services. Choose carefully as it will represent you for emails, app purchases, and more.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step" id="step7">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Review Google's Privacy and Terms</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        <p>Before creating your account, you'll need to agree to Google's terms:</p>
+                        <ol>
+                            <li>Read through the Privacy Policy and Terms of Service</li>
+                            <li>Scroll down to view all sections</li>
+                            <li>Check the boxes to indicate you agree to the terms</li>
+                        </ol>
+                        <p>You can click the links to read the full documents if you wish to review them in detail.</p>
+                        
+                        <div class="step-tips">
+                            <h4>What You're Agreeing To</h4>
+                            <p>By creating an account, you're agreeing to Google's rules about acceptable use, data collection, and service terms. These are standard for most online services.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">✔</span> Mark as Complete
+                        </button>
+                        <a href="https://policies.google.com/terms" target="_blank" class="btn btn-outline">
+                            <span class="btn-icon">📄</span> View Terms
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="step" id="step8">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <div class="step-title">You're ready to use your new Gmail account</div>
+                    <span class="completed-mark">✅</span>
+                    <button class="step-toggle">▼</button>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        <p>Congratulations! Your Gmail account has been successfully created.</p>
+                        <p>You'll be taken to your new Gmail inbox where you can:</p>
+                        <ul>
+                            <li>Send and receive emails</li>
+                            <li>Organize messages with labels and filters</li>
+                            <li>Access 15GB of free storage</li>
+                            <li>Connect with other Google services</li>
+                        </ul>
+                        <p>Take some time to explore the interface and customize your settings to suit your preferences.</p>
+                        
+                        <div class="step-tips">
+                            <h4>Next Steps</h4>
+                            <p>Consider setting up two-factor authentication for extra security, and explore Gmail's features like labels, filters, and categories to organize your inbox.</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn step-complete">
+                            <span class="btn-icon">🎉</span> Finish Setup
+                        </button>
+                        <a href="https://mail.google.com" target="_blank" class="btn btn-outline">
+                            <span class="btn-icon">✉️</span> Open Gmail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Message -->
+        <div class="completion" id="completionMessage">
+            <h2>Account Setup Complete!</h2>
+            <p>You've successfully created your Gmail account and can now enjoy all of Google's services. Your new email address is ready to use for communication, app sign-ins, and more.</p>
+            <p>We recommend exploring Gmail's features and settings to customize your experience.</p>
+            <a href="https://mail.google.com" target="_blank" class="btn">
+                <span class="btn-icon">✉️</span> Go to Gmail
+            </a>
+        </div>
+
+        <!-- Image Zoom Modal -->
+        <div class="modal" id="imageModal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <img src="" alt="" class="modal-image" id="modalImage">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const steps = document.querySelectorAll('.step');
+            const stepHeaders = document.querySelectorAll('.step-header');
+            const completeButtons = document.querySelectorAll('.step-complete');
+            const startBtn = document.getElementById('startBtn');
+            const viewAllBtn = document.getElementById('viewAllBtn');
+            const progressBar = document.getElementById('progressBar');
+            const completionMessage = document.getElementById('completionMessage');
+            const imageContainers = document.querySelectorAll('.step-image-container');
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalClose = document.querySelector('.modal-close');
+            
+            // State variables
+            let completedSteps = 0;
+            const totalSteps = steps.length;
+
+            // Initialize first step as active
+            steps[0].classList.add('active');
+
+            // Toggle step content when header is clicked
+            stepHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const step = this.parentElement;
+                    step.classList.toggle('active');
+                    
+                    // Scroll to the step if opening
+                    if (step.classList.contains('active')) {
+                        setTimeout(() => {
+                            step.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 300);
+                    }
+                });
+            });
+
+            // Mark step as complete
+            completeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const step = this.closest('.step');
+                    
+                    // Mark as completed
+                    step.classList.add('completed');
+                    completedSteps++;
+                    
+                    // Update progress bar
+                    const progress = (completedSteps / totalSteps) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    // Move to next step if not last step
+                    if (step.id !== 'step8') {
+                        const nextStep = step.nextElementSibling;
+                        step.classList.remove('active');
+                        nextStep.classList.add('active');
+                        
+                        // Scroll to next step
+                        setTimeout(() => {
+                            nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 300);
+                    } else {
+                        // Show completion message
+                        completionMessage.classList.add('show');
+                        createConfetti();
+                        setTimeout(() => {
+                            completionMessage.scrollIntoView({ behavior: 'smooth' });
+                        }, 300);
+                    }
+                    
+                    // Disable this button
+                    this.disabled = true;
+                    this.innerHTML = '<span class="btn-icon">✓</span> Completed!';
+                });
+            });
+
+            // Start button functionality
+            startBtn.addEventListener('click', function() {
+                document.querySelector('.intro').scrollIntoView({ behavior: 'smooth' });
+                this.innerHTML = '<span class="btn-icon">👍</span> Let\'s Go!';
+                setTimeout(() => {
+                    this.innerHTML = '<span class="btn-icon">🚀</span> Continue Setup';
+                }, 1500);
+            });
+
+            // View all steps button
+            viewAllBtn.addEventListener('click', function() {
+                steps.forEach(step => {
+                    step.classList.add('active');
+                });
+                this.innerHTML = '<span class="btn-icon">👀</span> All Steps Visible';
+                setTimeout(() => {
+                    this.innerHTML = '<span class="btn-icon">👀</span> View All Steps';
+                }, 1500);
+            });
+
+            // Image zoom functionality
+            imageContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    modalImage.src = imgSrc;
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal
+            modalClose.addEventListener('click', function() {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Confetti effect for completion
+            function createConfetti() {
+                const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const completionElement = document.getElementById('completionMessage');
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+                    
+                    completionElement.appendChild(confetti);
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    
+                    confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                    
+                    // Create keyframes for falling animation
+                    const keyframes = `
+                        @keyframes fall {
+                            to {
+                                transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    
+                    // Add keyframes to head
+                    const style = document.createElement('style');
+                    style.innerHTML = keyframes;
+                    document.head.appendChild(style);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                        style.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    const activeStep = document.querySelector('.step.active');
+                    if (activeStep && activeStep.nextElementSibling) {
+                        activeStep.classList.remove('active');
+                        activeStep.nextElementSibling.classList.add('active');
+                        activeStep.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+                
+                if (e.key === 'ArrowLeft') {
+                    const activeStep = document.querySelector('.step.active');
+                    if (activeStep && activeStep.previousElementSibling) {
+                        activeStep.classList.remove('active');
+                        activeStep.previousElementSibling.classList.add('active');
+                        activeStep.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+                
+                if (e.key === 'Escape') {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

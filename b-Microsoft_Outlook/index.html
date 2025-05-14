@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Outlook Login Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0078d4;
+            --secondary: #106ebe;
+            --accent: #ffb900;
+            --light: #f3f2f1;
+            --dark: #323130;
+            --success: #107c10;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        header:hover {
+            box-shadow: 0 8px 24px rgba(0, 120, 212, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        header:hover .subtitle {
+            opacity: 1;
+            transform: translateY(2px);
+        }
+        
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .step-header:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+        
+        .step-number {
+            background-color: white;
+            color: var(--primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            flex-grow: 1;
+            transition: all 0.2s ease;
+        }
+        
+        .step-header:hover .step-title {
+            transform: translateX(5px);
+        }
+        
+        .step-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .step.active .step-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .step-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .step.active .step-content {
+            padding: 25px;
+            max-height: 2000px;
+        }
+        
+        .step-image-container {
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e1dfdd;
+            transition: all 0.3s ease;
+        }
+        
+        .step-image-container:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .step-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #323130;
+        }
+        
+        .step-description ul {
+            padding-left: 20px;
+        }
+        
+        .step-description li {
+            margin-bottom: 8px;
+            position: relative;
+            transition: all 0.2s ease;
+            padding-left: 5px;
+        }
+        
+        .step-description li:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-description li:before {
+            content: "→";
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: all 0.2s ease;
+            color: var(--primary);
+        }
+        
+        .step-description li:hover:before {
+            opacity: 1;
+            left: -10px;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 185, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .highlight:hover {
+            background-color: rgba(255, 185, 0, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        .note {
+            background-color: #f1f8ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .note:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 120, 212, 0.1);
+        }
+        
+        .note-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        
+        .note:hover .note-title {
+            transform: translateX(3px);
+        }
+        
+        .note-title i {
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .note:hover .note-title i {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #605e5c;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        footer:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #e1dfdd;
+            border-radius: 3px;
+            margin: 30px 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-bar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                            rgba(255,255,255,0.1) 0%, 
+                            rgba(255,255,255,0.3) 50%, 
+                            rgba(255,255,255,0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+            }
+            
+            .step.active .step-content {
+                padding: 15px;
+            }
+            
+            .step-header {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Microsoft Outlook Login Guide</h1>
+            <div class="subtitle">Follow these simple steps to access your Outlook account</div>
+            <div class="subtitle">By Phearom Yoeu</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="step-container" id="stepContainer">
+            <div class="step" id="step1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Navigate to Microsoft Sign-in Page</div>
+                    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container">
+                        <img src="./img/1.jpg" alt="Step 1: Microsoft Sign-in Page" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>Begin by opening your preferred web browser and navigating to the Microsoft sign-in page. You can typically find this by going to <span class="highlight tooltip">outlook.live.com<span class="tooltiptext">Clicking this will take you to Outlook</span></span> or <span class="highlight tooltip">office.com<span class="tooltiptext">Office 365 login portal</span></span>.</p>
+                        <ul>
+                            <li>Look for the <span class="highlight">Sign in</span> button in the top-right corner</li>
+                            <li>You'll be redirected to the Microsoft authentication page</li>
+                            <li>The URL should begin with <span class="highlight">login.microsoftonline.com</span></li>
+                        </ul>
+                        <div class="note">
+                            <div class="note-title"><i class="fas fa-lightbulb"></i> Note</div>
+                            <p>Make sure you're on the official Microsoft website before entering your credentials to avoid phishing attempts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Enter Your Email Address</div>
+                    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container">
+                        <img src="./img/2.jpg" alt="Step 2: Enter Email Address" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>On the Microsoft sign-in page, you'll see a field asking for your email, phone, or Skype.</p>
+                        <ul>
+                            <li>Enter your full <span class="highlight">Microsoft account email address</span> (e.g., yourname@gmaill.com)</li>
+                            <li>Double-check for any typos in your email address</li>
+                            <li>Click <span class="highlight">Next</span> to proceed</li>
+                        </ul>
+                        <div class="note">
+                            <div class="note-title"><i class="fas fa-exclamation-circle"></i> Important</div>
+                            <p>If you don't have an account yet, click "Create one" to register for a new Microsoft account before proceeding.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step" id="step3">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Enter Your Password</div>
+                    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container">
+                        <img src="./img/3.jpg" alt="Step 3: Enter Password" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>After entering your email, you'll be prompted to enter your password.</p>
+                        <ul>
+                            <li>Type your <span class="highlight">account password</span> carefully (passwords are case-sensitive)</li>
+                            <li>If you've forgotten your password, click <span class="highlight">Forgot password?</span> to reset it</li>
+                            <li>For security, the password will appear as dots as you type</li>
+                            <li>Click <span class="highlight">Sign in</span> when ready</li>
+                        </ul>
+                        <div class="note">
+                            <div class="note-title"><i class="fas fa-shield-alt"></i> Security Tip</div>
+                            <p>If you're using a public or shared computer, consider using "Private Browsing" mode and never check "Keep me signed in".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step" id="step4">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Stay Signed In? (Optional)</div>
+                    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container">
+                        <img src="./img/4.jpg" alt="Step 4: Stay Signed In Prompt" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>Microsoft may ask if you want to stay signed in to your account.</p>
+                        <ul>
+                            <li>Select <span class="highlight">Yes</span> if this is your personal device and you want to skip signing in next time</li>
+                            <li>Select <span class="highlight">No</span> if this is a public or shared computer for better security</li>
+                            <li>This preference can be changed later in your account settings</li>
+                        </ul>
+                        <div class="note">
+                            <div class="note-title"><i class="fas fa-lock"></i> Security Recommendation</div>
+                            <p>We recommend choosing "No" unless you're on a trusted personal device. Even then, consider using app passwords for added security.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step" id="step5">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Access Your Outlook Inbox</div>
+                    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="step-image-container">
+                        <img src="./img/5.jpg" alt="Step 5: Outlook Inbox" class="step-image">
+                    </div>
+                    <div class="step-description">
+                        <p>Congratulations! You've successfully signed in to your Outlook account.</p>
+                        <ul>
+                            <li>Your inbox will display all received emails</li>
+                            <li>Use the left sidebar to navigate between <span class="highlight">Inbox, Sent Items, Drafts</span>, and other folders</li>
+                            <li>Click on any email to view its contents</li>
+                        </ul>
+                        <div class="note">
+                            <div class="note-title"><i class="fas fa-cog"></i> Customization Tip</div>
+                            <p>You can customize your Outlook interface by dragging folders to rearrange them or right-clicking to create new folders for better organization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 Microsoft Outlook Login Guide | This is an unofficial guide not affiliated with Microsoft Corporation</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            const stepContainer = document.getElementById('stepContainer');
+            const progressBar = document.getElementById('progressBar');
+
+            steps[0].classList.add('active');
+            updateProgressBar();
+
+            steps.forEach(step => {
+                const header = step.querySelector('.step-header');
+                header.addEventListener('click', () => {
+                    const isActive = step.classList.contains('active');
+
+                    steps.forEach(s => s.classList.remove('active'));
+
+                    if (!isActive) {
+                        step.classList.add('active');
+
+                        const stepNumber = step.querySelector('.step-number');
+                        stepNumber.style.animation = 'pulse 0.5s';
+                        setTimeout(() => {
+                            stepNumber.style.animation = '';
+                        }, 500);
+                    }
+                    
+                    updateProgressBar();
+                });
+            });
+
+            function updateProgressBar() {
+                const activeIndex = Array.from(steps).findIndex(step => step.classList.contains('active'));
+                const progress = ((activeIndex + 1) / steps.length) * 100;
+                progressBar.style.width = `${progress}%`;
+
+                if (activeIndex === steps.length - 1) {
+                    progressBar.style.background = `linear-gradient(90deg, var(--primary), var(--success))`;
+                } else {
+                    progressBar.style.background = `linear-gradient(90deg, var(--primary), var(--secondary))`;
+                }
+            }
+
+            stepContainer.addEventListener('click', function(e) {
+                if (e.target.closest('.step-header')) {
+                    const step = e.target.closest('.step');
+                    setTimeout(() => {
+                        step.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            });
+
+            document.querySelectorAll('.highlight, .note, .step-image-container').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 1s ease';
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                const activeStep = document.querySelector('.step.active');
+                if (!activeStep) return;
+                
+                const currentIndex = Array.from(steps).indexOf(activeStep);
+                
+                if (e.key === 'ArrowDown' && currentIndex < steps.length - 1) {
+                    e.preventDefault();
+                    steps.forEach(s => s.classList.remove('active'));
+                    steps[currentIndex + 1].classList.add('active');
+                    steps[currentIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    updateProgressBar();
+                } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                    e.preventDefault();
+                    steps.forEach(s => s.classList.remove('active'));
+                    steps[currentIndex - 1].classList.add('active');
+                    steps[currentIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    updateProgressBar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
